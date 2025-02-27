@@ -14,14 +14,13 @@ import java.util.logging.Level;
 public class GameThread implements Runnable {
 
     private Boolean stop = true;
-    private DrawView dv;
+    private final DrawView dv;
     /**
-     * 
+     * @param gameState
      */
-    public GameThread(GameState gameState) {
+    public GameThread(final GameState gameState) {
         this.startThread();
         this.dv = new DrawViewImpl(gameState);
-        //this.dv.changeGameState(gameState);
     }
     /**
      * Starts the gameThread.
@@ -43,7 +42,7 @@ public class GameThread implements Runnable {
     public void run() {
         while (stop) {
             try {
-
+                this.dv.draw();
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 Logger.getLogger(GameThread.class.getName()).log(Level.SEVERE, "Sleep Thread Error", e);

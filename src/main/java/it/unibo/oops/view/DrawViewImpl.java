@@ -20,6 +20,7 @@ public final class DrawViewImpl implements DrawView {
     private final int sw = (int) d.getWidth();
     private final int sh = (int) d.getHeight();
     private GameState currentGameState = GameState.TITLESTATE;
+    private MyPanel currentPanel = new TitlePanel(sw, sh);
     /**
      * @param gameState
      */
@@ -44,36 +45,18 @@ public final class DrawViewImpl implements DrawView {
         if (currentGameState != gameState) {
             this.currentGameState = gameState;
             switch (currentGameState) {
-                case TITLESTATE -> setTitleState();
-                case TITLEOPTIONSTATE, PAUSESTATE -> setOptionState();
-                case PLAYSTATE -> setPlayState();
-                case TESTSTATE -> setTestState();
+                case TITLESTATE -> this.currentPanel = new TitlePanel(sw / PROPORTION, sh / PROPORTION);
+                case TITLEOPTIONSTATE, PAUSESTATE -> new TitlePanel(sw / PROPORTION, sh / PROPORTION);
+                case PLAYSTATE -> new GamePanel(sw / PROPORTION, sh / PROPORTION);
+                case TESTSTATE -> new TestPanel(sw / PROPORTION, sh / PROPORTION);
                 default -> throw new IllegalArgumentException();
             }
+            setState();
         }
     }
-    private void setTitleState() {
+    private void setState() {
         SwingUtilities.invokeLater(() -> {
-            this.frame.setContentPane(new TitlePanel(sw / PROPORTION, sh / PROPORTION));
-            this.frame.pack();
-        });
-    }
-    private void setOptionState() {
-        SwingUtilities.invokeLater(() -> {
-            //GamePanel da sostituire con un OptionPanel
-            this.frame.setContentPane(new GamePanel(sw / PROPORTION, sh / PROPORTION));
-            this.frame.pack();
-        });
-    }
-    private void setPlayState() {
-        SwingUtilities.invokeLater(() -> {
-            this.frame.setContentPane(new GamePanel(sw / PROPORTION, sh / PROPORTION));
-            this.frame.pack();
-        });
-    }
-    private void setTestState() {
-        SwingUtilities.invokeLater(() -> {
-            this.frame.setContentPane(new TestPanel(sw / PROPORTION, sh / PROPORTION));
+            this.frame.setContentPane(this.currentPanel);
             this.frame.pack();
         });
     }
@@ -82,5 +65,12 @@ public final class DrawViewImpl implements DrawView {
      */
     public GameState getCurrentGameState() {
         return currentGameState;
+    }
+    /**
+    *  Draws current panel.
+    */
+    @Override
+    public void draw() {
+        this.currentPanel.draw();
     }
 }

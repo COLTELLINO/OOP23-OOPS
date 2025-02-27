@@ -16,4 +16,8 @@ public interface DrawView {
      * @param gameState 
      */
     void changeGameState(GameState gameState);
+    /**
+     * Draws the current Panel.
+     */
+    void draw();
 }

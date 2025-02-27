@@ -14,6 +14,12 @@ public class TestPanel extends MyPanel {
      */
     public TestPanel(final int screenWidth, final int screenHeight) {
         super.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        super.setBackground(Color.WHITE);
+        super.setBackground(Color.BLACK);
+    }
+    /**
+    *  Draws current panel.
+    */
+    @Override
+    public void draw() {
     }
 }

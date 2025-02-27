@@ -1,8 +1,7 @@
 package it.unibo.oops.view;
 
 import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Dimension;
+
 /**
  * 
  */
@@ -14,5 +13,11 @@ public abstract class MyPanel extends JPanel {
     */
     public static double getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    /**
+    *  Draws current panel.
+    */
+    public void draw() {
     }
 }
