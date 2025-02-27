@@ -13,4 +13,4 @@ final class MainApp {
     public static void main(final String[] args) {
         new MainApp(new DrawViewImpl(GameState.PLAYSTATE));
     }
-}
+}//COMMENTO DI TESTING
