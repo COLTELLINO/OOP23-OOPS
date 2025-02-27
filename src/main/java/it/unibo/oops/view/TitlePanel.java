@@ -1,5 +1,6 @@
 package it.unibo.oops.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 /**
  * 
@@ -13,5 +14,6 @@ public class TitlePanel extends MyPanel {
      */
     public TitlePanel(final int screenWidth, final int screenHeight) {
         super.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        super.setBackground(Color.WHITE);
     }
 }
