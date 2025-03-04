@@ -9,6 +9,6 @@ final class MainApp {
         new GameThread(gameState);
     }
     public static void main(final String[] args) {
-        new MainApp(GameState.PLAYSTATE);
+        new MainApp(GameState.TESTSTATE);
     }
 } //COMMENTO DI TESTING
