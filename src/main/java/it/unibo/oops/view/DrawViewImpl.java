@@ -19,8 +19,8 @@ public final class DrawViewImpl implements DrawView {
     private final Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     private final int sw = (int) d.getWidth();
     private final int sh = (int) d.getHeight();
-    private GameState currentGameState = GameState.TITLESTATE;
-    private MyPanel currentPanel = new TitlePanel(sw, sh);
+    private GameState currentGameState;
+    private MyPanel currentPanel;
     /**
      * @param gameState
      */
@@ -45,10 +45,10 @@ public final class DrawViewImpl implements DrawView {
         if (currentGameState != gameState) {
             this.currentGameState = gameState;
             switch (currentGameState) {
-                case TITLESTATE -> this.currentPanel = new TitlePanel(sw / PROPORTION, sh / PROPORTION);
-                case TITLEOPTIONSTATE, PAUSESTATE -> new TitlePanel(sw / PROPORTION, sh / PROPORTION);
-                case PLAYSTATE -> new GamePanel(sw / PROPORTION, sh / PROPORTION);
-                case TESTSTATE -> new TestPanel(sw / PROPORTION, sh / PROPORTION);
+                case TITLESTATE, TITLEOPTIONSTATE, PAUSESTATE -> 
+                this.currentPanel = new TitlePanel(sw / PROPORTION, sh / PROPORTION);
+                case PLAYSTATE -> this.currentPanel = new GamePanel(sw / PROPORTION, sh / PROPORTION);
+                case TESTSTATE -> this.currentPanel = new TestPanel(sw / PROPORTION, sh / PROPORTION);
                 default -> throw new IllegalArgumentException();
             }
             setState();
@@ -71,6 +71,8 @@ public final class DrawViewImpl implements DrawView {
     */
     @Override
     public void draw() {
-        this.currentPanel.draw();
+        SwingUtilities.invokeLater(() -> {
+            this.currentPanel.draw();
+        });
     }
 }

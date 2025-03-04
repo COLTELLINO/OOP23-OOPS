@@ -21,5 +21,6 @@ public class TestPanel extends MyPanel {
     */
     @Override
     public void draw() {
+        //System.out.println("TEST");
     }
 }
