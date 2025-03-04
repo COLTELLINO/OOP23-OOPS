@@ -1,7 +1,6 @@
 package it.unibo.oops.view;
 
 import java.awt.Color;
-import java.awt.Dimension;
 /**
  * 
  */
@@ -13,7 +12,15 @@ public class TitlePanel extends MyPanel {
      * @param screenHeight
      */
     public TitlePanel(final int screenWidth, final int screenHeight) {
-        super.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        super(screenWidth, screenHeight);
         super.setBackground(Color.WHITE);
+    }
+    /**
+    *  Draws current panel.
+    */
+    @Override
+    public void draw() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'draw'");
     }
 }

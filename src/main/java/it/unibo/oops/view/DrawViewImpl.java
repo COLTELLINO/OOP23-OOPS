@@ -73,6 +73,7 @@ public final class DrawViewImpl implements DrawView {
     public void draw() {
         SwingUtilities.invokeLater(() -> {
             this.currentPanel.draw();
+            this.currentPanel.repaint();
         });
     }
 }
