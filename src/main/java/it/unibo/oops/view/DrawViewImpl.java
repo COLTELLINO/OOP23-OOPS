@@ -71,6 +71,8 @@ public final class DrawViewImpl implements DrawView {
     */
     @Override
     public void draw() {
-        this.currentPanel.draw();
+        SwingUtilities.invokeLater(() -> {
+            this.currentPanel.draw();
+        });
     }
 }

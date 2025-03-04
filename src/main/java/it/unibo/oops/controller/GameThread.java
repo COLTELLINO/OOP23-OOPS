@@ -19,8 +19,8 @@ public class GameThread implements Runnable {
      * @param gameState
      */
     public GameThread(final GameState gameState) {
-        this.startThread();
         this.dv = new DrawViewImpl(gameState);
+        this.startThread();
     }
     /**
      * Starts the gameThread.
